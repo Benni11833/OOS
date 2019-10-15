@@ -1,0 +1,6 @@
+Aufg1)
+ a) Da versucht wird einen größeren DatenTyp(long) in einen kleineren(int) zu speichern
+ b) entweder i = int(l) oder int i=c zu long i=c ändern
+Aufg2)
+ z.B. wenn 2. Argument eine Funktion/Methode ist und das erste Argument True ist:
+	-> if(True & someFunk()) -> ruft someFunk auf - vs if(True && someFunk()) -> ruft someFunk nicht auf
