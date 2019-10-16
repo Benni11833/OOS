@@ -4,3 +4,10 @@ Aufg1)
 Aufg2)
  z.B. wenn 2. Argument eine Funktion/Methode ist und das erste Argument True ist:
 	-> if(True & someFunk()) -> ruft someFunk auf - vs if(True && someFunk()) -> ruft someFunk nicht auf
+Aufg4)
+ b) -70609262346240000
+ c) Overflow von Long -> Overflow flippt alle bits, so dass sie als -(Max_Wert(long)) interpretiert wird
+Aufg5)
+ a) Speicheraufwand: 8*n Byte, Zeitaufwand für Ausgabe der n Fib_Zahlen: n Takte
+ b) 
+
