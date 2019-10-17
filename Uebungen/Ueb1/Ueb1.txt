@@ -9,5 +9,12 @@ Aufg4)
  c) Overflow von Long -> Overflow flippt alle bits, so dass sie als -(Max_Wert(long)) interpretiert wird
 Aufg5)
  a) Speicheraufwand: 8*n Byte, Zeitaufwand für Ausgabe der n Fib_Zahlen: n Takte
- b) 
+Aufg6)
+ -Hat 2 Attribute (x, y) vom Typ int
+ -3 Konstruktoren mitunter, einen Default Konstruktor
+ -getLocation-Methode, die die aktuelle Location(x-, y-Koordinate zurückgibt in Form eines Point-Objekts)
+ -Überladene set-Methode(setLocation), die entweder einen Point oder zwei Int-Werte als Argumente entgegen nimmt
+ -Move-Methode, um von der Aktuellen Position(x, y) sich um dx bzw. dy zu bewegen
+ -eine Equals-Methode, um Vergleiche zwischen zwei Objekten einer Klasse darzustellen
+ -eine toString-Methode, um ein Point-Objekt als String zu returnen
 
