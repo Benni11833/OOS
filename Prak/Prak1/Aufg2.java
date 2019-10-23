@@ -8,9 +8,10 @@ public class Aufg2 {
 	}
 }
 
-public class Point {
+
+class Point {
   
-	static int x, y;
+	int x, y;
 	
 	Point(){
 		this.x = this.y = 0;
@@ -55,7 +56,9 @@ public class Point {
 	}
 }
 
-public class KreisVererb extends Point {
+
+
+class KreisVererb extends Point {
 	static double radius;
 	
 	KreisVererb(){

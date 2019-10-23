@@ -1,15 +1,22 @@
 public class Aufg3 {
 	public static void main(String []args) throws CloneNotSupportedException {
-		/*KreisAgg k1 = new KreisAgg(3, 1, 2);
+		KreisAgg k1 = new KreisAgg(3, 1, 2);
 		KreisAgg k2 = (KreisAgg) k1.clone();
-      	k2.midPoint = new Point(2, 1);
-     	System.out.println(k1.equals(k2));*/
-		
-		/*SammLung []sammlung = new SammLung[2];
-		sammlung[0] = new Rechteck(0, 1, 2, 4);*/
+      	Figur []figuren = new Figur[10];
+      	figuren[0] = new Rechteck(3, 1, 2, 4);
+      	figuren[1] = k1;
+      	figuren[2] = k2;
+      	figuren[3] = new KreisAgg(9, 1, 1);
 		
 	}
 }
+
+
+interface Figur{
+	public double getFlaecheninhalt();
+	public String toString();
+}
+
 
 class Point implements Cloneable{
   
@@ -63,7 +70,8 @@ class Point implements Cloneable{
     } 
 }
 
-class KreisAgg implements Cloneable {
+
+class KreisAgg implements Figur, Cloneable {
 	Point midPoint;
 	double radius;
 	
@@ -75,6 +83,10 @@ class KreisAgg implements Cloneable {
 	KreisAgg(double radius, Point midPoint){
 		this.radius = radius; 
 		this.midPoint = midPoint;
+	}
+	
+	public double getFlaecheninhalt() {
+		return Math.PI * this.radius * this.radius;
 	}
 	
 	boolean equals(KreisAgg k){
@@ -91,7 +103,8 @@ class KreisAgg implements Cloneable {
     } 
 }
 
-class Rechteck implements Cloneable {
+
+class Rechteck implements Figur, Cloneable {
 	
 	Point linksOben, rechtsUnten;
 	
@@ -118,7 +131,7 @@ class Rechteck implements Cloneable {
 		return (rechtsUnten.y - linksOben.y);
 	}
 	
-	double getFlaecheninhalt(){
+	public double getFlaecheninhalt(){
 		return getBreite() * getLaenge();
 	}
 	

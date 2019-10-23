@@ -1,6 +1,6 @@
 public class Aufg1 {
 
-    static final int tiefe = 10;
+    static final int tiefe = 11;
 
     static int [][]pascal = new int[tiefe][];
 
