@@ -17,4 +17,5 @@ Aufg6)
  -Move-Methode, um von der Aktuellen Position(x, y) sich um dx bzw. dy zu bewegen
  -eine Equals-Methode, um Vergleiche zwischen zwei Objekten einer Klasse darzustellen
  -eine toString-Methode, um ein Point-Objekt als String zu returnen
-
+Aufg8)
+ p1 hat die werte (3,4), da es cbr übergeben wurde und neu Initialisiert wurde -> p1 zeigt auf neues Point-Objekt mit (3,4)
