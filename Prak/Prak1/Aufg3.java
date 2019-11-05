@@ -1,4 +1,14 @@
 public class Aufg3 {
+
+    static double getGesamtFlaecheninhalt(Figur f_array[]){
+        double sum = 0;
+        for (Figur f : f_array){
+            if(f != null)
+                sum += f.getFlaecheninhalt();
+       }
+        return sum;
+    }
+
 	public static void main(String []args) throws CloneNotSupportedException {
 		KreisAgg k1 = new KreisAgg(3, 1, 2);
 		KreisAgg k2 = (KreisAgg) k1.clone();
@@ -7,6 +17,8 @@ public class Aufg3 {
       	figuren[1] = k1;
       	figuren[2] = k2;
       	figuren[3] = new KreisAgg(9, 1, 1);
+
+        System.out.println( "Gesamter FLaecheninhalt: " + getGesamtFlaecheninhalt(figuren) );
 		
 	}
 }
@@ -15,6 +27,8 @@ public class Aufg3 {
 interface Figur{
 	public double getFlaecheninhalt();
 	public String toString();
+    //public boolean equals(Figur );
+    public Object clone() throws CloneNotSupportedException;
 }
 
 
@@ -89,7 +103,7 @@ class KreisAgg implements Figur, Cloneable {
 		return Math.PI * this.radius * this.radius;
 	}
 	
-	boolean equals(KreisAgg k){
+	public boolean equals(KreisAgg k){
 		return ( midPoint.equals(k.midPoint) && this.radius == k.radius );
 	}
 	
@@ -135,7 +149,7 @@ class Rechteck implements Figur, Cloneable {
 		return getBreite() * getLaenge();
 	}
 	
-	boolean equals(Rechteck r){
+	public boolean equals(Rechteck r){
 		return ( linksOben.equals(r.linksOben) && rechtsUnten.equals(r.rechtsUnten) );
 	}
 	

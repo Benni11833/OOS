@@ -5,6 +5,7 @@ public class Aufg2 {
       	Point p1 = new Point(3, 4);
 		Point p2 = new Point(4, 4);
 		System.out.println(p1.equals(p2));
+        System.out.println(p1);
 	}
 }
 
@@ -59,7 +60,7 @@ class Point {
 
 
 class KreisVererb extends Point {
-	static double radius;
+	double radius;
 	
 	KreisVererb(){
 		super();
