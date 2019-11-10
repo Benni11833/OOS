@@ -1,6 +1,6 @@
 package prak_2;
 
 public interface BenutzerVerwaltung {
-	void benutzerEintragen(Benutzer b);
+	public void benutzerEintragen(Benutzer b) throws NutzerVerwaltungException;
 	boolean benutzerOk(Benutzer b);
 }

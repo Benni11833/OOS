@@ -2,13 +2,32 @@ public class Aufg2 {
 	public static void main(String []args){
 		//KreisVererb p = new KreisVererb(2, 3, 4);
 		//System.out.print(p.equals(new KreisVererb(0, 1, 4)));
-      	Point p1 = new Point(3, 4);
+      	/*Point p1 = new Point(3, 4);
 		Point p2 = new Point(4, 4);
 		System.out.println(p1.equals(p2));
         System.out.println(p1);
+        p1.move(1, -2);
+        System.out.println(p1);
+        p1.setLocation(13, 37);
+        System.out.println(p1);
+        
+        KreisVererb k1 = new KreisVererb(0, 1, 1);
+        System.out.println(k1.getUmfang() );
+        KreisVererb k2 = new KreisVererb(1, 0, 0);
+        System.out.println(k2.getUmfang() );
+        System.out.println(k1.equals(k2) );*/
+
+        A a = new A(){
+        void dings(){ System.out.println("Hello"); }
+        };
+        a.dings();
+
 	}
 }
 
+abstract class A{
+    abstract void dings();
+}
 
 class Point {
   
@@ -48,7 +67,7 @@ class Point {
 	}
 	
 	boolean equals(Point p){
-		System.out.println("X: " + this.x + " == " + p.x + " - Y: " + this.y + " == " + p.y);
+		//System.out.println("X: " + this.x + " == " + p.x + " - Y: " + this.y + " == " + p.y);
 		return (this.x == p.x && this.y == p.y);
 	}
 	
@@ -80,7 +99,7 @@ class KreisVererb extends Point {
 	KreisVererb(double radius, int x, int y){
 		super(x, y);
 		this.radius = radius;
-      	System.out.println("Radius set to : " + this.radius + " von " + radius);
+      	//System.out.println("Radius set to : " + this.radius + " von " + radius);
 	}
 	
 	void setRadius(double radius){
@@ -91,7 +110,7 @@ class KreisVererb extends Point {
 		return 2 * Math.PI * this.radius;
 	}
 	boolean equals(KreisVererb k){
-      System.out.println(this.radius + " == " + k.radius);
+      //System.out.println(this.radius + " == " + k.radius);
 		return (super.equals(k) && this.radius == k.radius);
 	}
 	

@@ -3,9 +3,11 @@ public class Aufg3 {
     static double getGesamtFlaecheninhalt(Figur f_array[]){
         double sum = 0;
         for (Figur f : f_array){
-            if(f != null)
+            if(f != null){
+                System.out.println(f.getFlaecheninhalt());
                 sum += f.getFlaecheninhalt();
-       }
+            }
+        }
         return sum;
     }
 
@@ -14,9 +16,10 @@ public class Aufg3 {
 		KreisAgg k2 = (KreisAgg) k1.clone();
       	Figur []figuren = new Figur[10];
       	figuren[0] = new Rechteck(3, 1, 2, 4);
-      	figuren[1] = k1;
-      	figuren[2] = k2;
-      	figuren[3] = new KreisAgg(9, 1, 1);
+      	//figuren[1] = k1;
+      	//figuren[2] = k2;
+      	//figuren[3] = new KreisAgg(9, 1, 1);
+        figuren[1] = new Rechteck(3, 1, 3, 4);
 
         System.out.println( "Gesamter FLaecheninhalt: " + getGesamtFlaecheninhalt(figuren) );
 		
@@ -26,9 +29,6 @@ public class Aufg3 {
 
 interface Figur{
 	public double getFlaecheninhalt();
-	public String toString();
-    //public boolean equals(Figur );
-    public Object clone() throws CloneNotSupportedException;
 }
 
 
@@ -70,7 +70,7 @@ class Point implements Cloneable{
 	}
 	
 	boolean equals(Point p){
-		System.out.println("X: " + this.x + " == " + p.x + " - Y: " + this.y + " == " + p.y);
+		//System.out.println("X: " + this.x + " == " + p.x + " - Y: " + this.y + " == " + p.y);
 		return (this.x == p.x && this.y == p.y);
 	}
 	
@@ -83,7 +83,6 @@ class Point implements Cloneable{
         return super.clone(); 
     } 
 }
-
 
 class KreisAgg implements Figur, Cloneable {
 	Point midPoint;
@@ -117,7 +116,6 @@ class KreisAgg implements Figur, Cloneable {
     } 
 }
 
-
 class Rechteck implements Figur, Cloneable {
 	
 	Point linksOben, rechtsUnten;
@@ -138,7 +136,8 @@ class Rechteck implements Figur, Cloneable {
 	}
 	
 	int getBreite(){
-		return (rechtsUnten.x - linksOben.x);
+        //System.out.println(rechtsUnten.x + " - " + linksOben.x + " = " + (rechtsUnten.x - linksOben.x) );
+		return (linksOben.x - rechtsUnten.x);
 	}
 	
 	int getLaenge(){
@@ -161,5 +160,4 @@ class Rechteck implements Figur, Cloneable {
     { 
         return super.clone(); 
     }
-	
 }
