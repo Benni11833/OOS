@@ -1,12 +1,20 @@
 package prak_2;
 
 import java.util.ArrayList;
+
+/*
+ * Implementierung von BenutzerAdmin
+ * Verwaltet Benutzer des Systems:
+ * löschen, eintragen oder ueberpruefen ob Benutzer eingetragen ist
+ */
+
 import java.util.Arrays;
 
 public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 
 	private static ArrayList<Benutzer> userList =  new ArrayList<Benutzer>();
 	
+	@Override
 	public void benutzerEintragen(Benutzer b) throws NutzerVerwaltungException{
 		//Ueberpruefen ob UserId schon vergeben:
 		for(Benutzer b2 : userList)
@@ -19,6 +27,12 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 
 	@Override
 	public boolean benutzerOk(Benutzer b) {
+		/*@param: b: Benutzer der ueberprueft werden soll
+		 * 
+		 * ueberprueft, ob b in der Liste aller Benutzer vorhanden ist
+		 * @return: true, falls User vorhanden
+		 * @return false, falls nicht true
+		 */
 		for(Benutzer b2 : userList) {
 			if(b2.userId == b.userId && Arrays.equals(b2.passWort, b.passWort))
 				return true;
@@ -27,6 +41,11 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	}
 	
 	public void benutzerLöschen(Benutzer b) throws NutzerVerwaltungException{
+		/*
+		 * @param: b: Benutzer der geloscht werden soll
+		 * loescht Benutzer b, falls er in der Liste enthalten ist
+		 * falls er nicht enthalten ist, wird eine exception geworfen
+		 */
 		for(Benutzer b2 : userList) {
 			if(b2.userId == b.userId && Arrays.equals(b2.passWort, b.passWort)) {
 				userList.remove(b2);
