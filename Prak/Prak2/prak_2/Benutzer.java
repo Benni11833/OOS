@@ -1,5 +1,6 @@
 package prak_2;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -7,8 +8,12 @@ import java.util.Arrays;
  *
  */
 
-public class Benutzer {
+public class Benutzer implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String userId;
 	char [] passWort;
 	
@@ -48,10 +53,11 @@ public class Benutzer {
 	}
 	
 	public static void main(String[] args) {
-		Benutzer b1 = new Benutzer("1337", "hello123".toCharArray());
+		/*Benutzer b1 = new Benutzer("1337", "hello123".toCharArray());
 		//System.out.println(b1);
 		Benutzer b2 = new Benutzer("1337", "hello124".toCharArray());
 		System.out.println(b1.equals(b2));
+		*/
 	}
 
 }

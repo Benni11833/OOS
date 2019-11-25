@@ -1,5 +1,6 @@
 package prak_2;
 
+import java.io.*;
 import java.util.ArrayList;
 
 /*
@@ -8,18 +9,43 @@ import java.util.ArrayList;
  * löschen, eintragen oder ueberpruefen ob Benutzer eingetragen ist
  */
 
-import java.util.Arrays;
-
 public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 
 	private static final ArrayList<Benutzer> userList =  new ArrayList<Benutzer>();
 	
 	@Override
 	public void benutzerEintragen(Benutzer b) throws NutzerVerwaltungException{
-		if(!benutzerOk(b))
-			userList.add(b);
-		else
-			throw new NutzerVerwaltungException("Benutzer: " + b + " ist bereits eingetragen!\n");
+		if(b == null || !(b instanceof Benutzer))
+			throw new NutzerVerwaltungException("Object nicht gueltig!\n");
+		
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("fos.s"));
+			@SuppressWarnings("unchecked")
+			ArrayList<Benutzer> newList = (ArrayList<Benutzer>) is.readObject();
+			is.close();
+			
+			for(Benutzer b2 : newList) {
+				if(b2.userId.contentEquals(b.userId))
+					throw new NutzerVerwaltungException("Benutzer: " + b + " ist bereits eingetragen!\n");
+			}
+			
+			newList.add(b);
+			 
+			 ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("fos.s"));
+			 os.writeObject(newList);
+			 os.close();
+			
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		/*for(Benutzer b2 : userList) {
+			if(b2.userId.contentEquals(b.userId))
+				throw new NutzerVerwaltungException("Benutzer: " + b + " ist bereits eingetragen!\n");
+		}
+		
+		userList.add(b);*/
 		 
 	}
 
@@ -30,12 +56,31 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	 * @return: true, falls User vorhanden
 	 * @return false, falls nicht true
 	 */
-	public boolean benutzerOk(Benutzer b) {//contains
-		//return userList.contains(b);
+	public boolean benutzerOk(Benutzer b) {
+		if(b == null || !(b instanceof Benutzer))
+			return false;
+		
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("fos.s"));
+			@SuppressWarnings("unchecked")
+			ArrayList<Benutzer> newList = (ArrayList<Benutzer>) is.readObject();
+			is.close();
+			
+			for(Benutzer b2 : newList) {
+				if(b2.equals(b)) {
+					return true;
+				}
+			}
+			return false;
+			
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}/*
+		
 		for(Benutzer b2 : userList) {
-			if(b2.userId.equals(b.userId))
+			if(b2.equals(b))
 				return true;
-		}
+		}*/
 		return false;
 	}
 	
@@ -44,29 +89,81 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	 * @param: b Benutzer der geloscht werden soll
 	 * loescht Benutzer b, falls er in der Liste enthalten ist
 	 * falls er nicht enthalten ist, wird eine exception geworfen
+	 * @throws ClassNotFoundException 
 	 */
-	public void benutzerLöschen(Benutzer b) throws NutzerVerwaltungException{
-		if(benutzerOk(b)) {
+	public void benutzerLöschen(Benutzer b) throws NutzerVerwaltungException {
+		if(b == null || !(b instanceof Benutzer))
+			throw new NutzerVerwaltungException("Object nicht gueltig!\n");
+		
+		
+		 try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("fos.s"));
+			@SuppressWarnings("unchecked")
+			ArrayList<Benutzer> newList = (ArrayList<Benutzer>) is.readObject();
+			is.close();
+			
+			 if(benutzerOk(b)) {
+				 newList.remove(b);
+			 } else {
+				 throw new NutzerVerwaltungException("Benutzer: " + b + " ist nicht enthalten!\n");
+			 }
+			 
+			 ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("fos.s"));
+			 os.writeObject(newList);
+			 os.close();
+			
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		/*if(benutzerOk(b)) {
 			userList.remove(b);
 		}else
-			throw new NutzerVerwaltungException("Benutzer: " + b + " ist nicht enthalten!\n");
+			throw new NutzerVerwaltungException("Benutzer: " + b + " ist nicht enthalten!\n");*/
+	}
+	
+	public void dbInitialisieren() {
+		ArrayList<Benutzer> newUserList = new ArrayList<Benutzer>();
+		try {
+			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("fos.s"));
+			os.writeObject(newUserList);
+			os.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void printNewList() {
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("fos.s"));
+			@SuppressWarnings("unchecked")
+			ArrayList<Benutzer> newList = (ArrayList<Benutzer>) is.readObject();
+			is.close();
+			
+			System.out.println(newList);
+			
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
-		BenutzerVerwaltungAdmin a1 = new BenutzerVerwaltungAdmin();
+		/*BenutzerVerwaltungAdmin a1 = new BenutzerVerwaltungAdmin();
+		//a1.dbInitialisieren();
 		try {
 			Benutzer b = new Benutzer("0", "hel123lo".toCharArray());
 			//a1.benutzerEintragen(b);
-			a1.benutzerEintragen(new Benutzer("0", "hello".toCharArray()));
-			a1.benutzerEintragen(new Benutzer("1", "hello1".toCharArray()));
-			a1.benutzerLöschen(new Benutzer("0", "hello".toCharArray()));
+			//a1.benutzerEintragen(new Benutzer("0", "hello".toCharArray()));
+			//a1.benutzerEintragen(new Benutzer("1", "hello1".toCharArray()));
+			//a1.benutzerLöschen(new Benutzer("0", "hel123lo".toCharArray()));
 			//a1.benutzerLöschen(new Benutzer("3", "hello".toCharArray()));
 			//System.out.println(a1.benutzerOk(new Benutzer("0", "hello".toCharArray())));
-			a1.benutzerLöschen(new Benutzer("0", "hello3".toCharArray()));
-			System.out.println(a1.userList);
+			//a1.benutzerLöschen(new Benutzer("0", "hello3".toCharArray()));
+			//System.out.println(a1.userList);
+			//a1.printNewList();
 		}catch(NutzerVerwaltungException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

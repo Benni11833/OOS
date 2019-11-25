@@ -8,10 +8,10 @@ public class DIeseListe {
 	static MeineListe list = new MeineListe();
 	
 	static void append(MeineListe l) throws CloneNotSupportedException {
-		System.out.println("DIeseListe: " + DIeseListe.list + ", L: " + l);
+		//System.out.println("DIeseListe: " + DIeseListe.list + ", L: " + l);
 		l = (MeineListe) l.vorhängen(DIeseListe.list);
 		DIeseListe.list = l;
-		System.out.println("Nach COncat: " + DIeseListe.list);
+		//System.out.println("Nach COncat: " + DIeseListe.list);
 	}
 	
 	static void attach(Object o) throws CloneNotSupportedException {
