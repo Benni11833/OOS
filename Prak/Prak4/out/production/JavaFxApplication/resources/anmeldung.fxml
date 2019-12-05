@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AnmeldungsController">
+   <children>
+      <Label layoutX="41.0" layoutY="32.0" text="Benutzerverwaltung">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="97.0" text="UserID" />
+      <Label layoutX="41.0" layoutY="139.0" text="Passwort" />
+      <TextField fx:id="userIdTextField" layoutX="138.0" layoutY="92.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="138.0" layoutY="134.0" />
+      <Button layoutX="41.0" layoutY="218.0" mnemonicParsing="false" onAction="#validatePassword" text="Ausführen" />
+      <Label layoutX="41.0" layoutY="184.0" text="Wiederholung" />
+      <PasswordField fx:id="passwordTextField_wiederholung" layoutX="138.0" layoutY="179.0" />
+   </children>
+</AnchorPane>
