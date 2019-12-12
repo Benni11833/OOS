@@ -13,8 +13,8 @@ public class Main extends Application {
         primaryStage.setTitle("Benutzerverwaltung");
 
         //showAnwendungsScene(primaryStage);
-        //showLoginScene(primaryStage);
-        showAnmeldungsScene(primaryStage);
+        showLoginScene(primaryStage);
+        //showAnmeldungsScene(primaryStage);
         primaryStage.show();
     }
 

@@ -9,8 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sun.applet.Main;
 
 public class AnwendungsController {
+
+    public void initialize(MainApplication mainApp){
+        System.out.println("AnwendungsController initialize");
+        mainApp_ref = mainApp;
+    }
+
+    MainApplication mainApp_ref;
 
     @FXML
     public void closeWindow(ActionEvent e){

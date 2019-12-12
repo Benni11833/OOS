@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
@@ -11,9 +10,13 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    LoginController(MainApplication mainApp){
-        MainApplication mainApllication_ref = mainApp;
+    public void initialize(MainApplication app){
+        System.out.println("LoginController initialize");
+        mainApp_ref = app;
     }
+
+    MainApplication mainApp_ref;
+
 
     @FXML
     public CheckBox neuAnmeldungCheckBox;
@@ -24,13 +27,21 @@ public class LoginController {
     @FXML
     public void neuAnmeldungCheckBoxAction(ActionEvent e){
         neuAnmeldung = neuAnmeldungCheckBox.isSelected();
-        System.out.println("Neu Anmeldung: " + neuAnmeldung);
+        //System.out.println("Neu Anmeldung: " + neuAnmeldung);
     }
 
     public void ausfuehrenButton(ActionEvent e){
+        System.out.println("In Ausfuehren");
         Benutzer user = new Benutzer(userIdTextField.getText(), passwordTextField.getText().toCharArray());
-        System.out.println(user);
-        Stage stage = (Stage) neuAnmeldungCheckBox.getScene().getWindow();
-        stage.close();
+
+        if(neuAnmeldung){
+            mainApp_ref.neuAnmeldung();
+        }else{
+            mainApp_ref.benutzerLogin(user);
+        }
+    }
+
+    public TextField getTextField(){
+        return userIdTextField;
     }
 }
