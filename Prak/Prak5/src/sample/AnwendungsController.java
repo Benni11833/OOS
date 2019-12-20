@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
@@ -23,5 +24,6 @@ public class AnwendungsController {
     @FXML
     public void closeWindow(ActionEvent e){
         System.out.println("Anwedungsfenster schließt.");
+        Platform.exit();
     }
 }
