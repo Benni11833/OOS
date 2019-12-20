@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import prak4client.ClientOrb;
 import prak4gemklassen.Benutzer;
 
 public class LoginController {
@@ -20,6 +21,7 @@ public class LoginController {
 
     @FXML
     public CheckBox neuAnmeldungCheckBox;
+    public CheckBox lokaleVerwaltungCheckbox;
     private boolean neuAnmeldung = false;
     public TextField userIdTextField;
     public PasswordField passwordTextField;
@@ -32,6 +34,11 @@ public class LoginController {
 
     public void ausfuehrenButton(ActionEvent e){
 
+        if(lokaleVerwaltungCheckbox.isSelected())
+            mainApp_ref.local();
+        else
+            mainApp_ref.remote();
+
         Benutzer user = new Benutzer(userIdTextField.getText(), passwordTextField.getText().toCharArray());
 
         if(neuAnmeldung){
@@ -39,6 +46,7 @@ public class LoginController {
         }else{
             mainApp_ref.benutzerLogin(user);
         }
+
     }
 
     public TextField getTextField(){

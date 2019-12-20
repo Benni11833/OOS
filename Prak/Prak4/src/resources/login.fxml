@@ -21,6 +21,8 @@
       <PasswordField fx:id="passwordTextField" layoutX="138.0" layoutY="134.0" />
       <CheckBox fx:id="neuAnmeldungCheckBox" layoutX="166.0" layoutY="191.0" mnemonicParsing="false" onAction="#neuAnmeldungCheckBoxAction" />
       <Label layoutX="41.0" layoutY="192.0" text="Neu Anmeldung" />
-      <Button layoutX="41.0" layoutY="218.0" mnemonicParsing="false" onAction="#ausfuehrenButton" text="Ausführen" />
+      <CheckBox fx:id="lokaleVerwaltungCheckbox" layoutX="166.0" layoutY="227.0" mnemonicParsing="false" />
+      <Label layoutX="41.0" layoutY="228.0" text="lokal" />
+      <Button layoutX="43.0" layoutY="267.0" mnemonicParsing="false" onAction="#ausfuehrenButton" text="Ausführen" />
    </children>
 </AnchorPane>

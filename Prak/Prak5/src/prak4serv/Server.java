@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Server {
     public Server(){
-        BenutzerVerwaltungAdmin bv = new BenutzerVerwaltungAdmin();
+        BenutzerVerwaltungAdmin bv = new BenutzerVerwaltungAdmin(false);
         try {
             ServerOrb so = new ServerOrb(bv);
         } catch (IOException e) {

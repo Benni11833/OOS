@@ -15,23 +15,55 @@ import java.util.ArrayList;
 public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 
 	private static ArrayList<Benutzer> userList =  new ArrayList<Benutzer>();
+    private static boolean local;
+
+	public BenutzerVerwaltungAdmin(boolean local){
+	    this.local = local;
+	    System.out.println("Konstruktor BenutzerVerwaltungAdmin");
+	    try{
+	        if(this.local)
+                new FileInputStream("fos_local.s");
+	        else
+	            new FileInputStream("fos_remote.s");
+        } catch (FileNotFoundException e) {
+            try {
+                writeUserList();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
 	@SuppressWarnings("unchecked")
 	private static void readUserList() throws IOException, ClassNotFoundException{
-
-			ObjectInputStream is = new ObjectInputStream(new FileInputStream("fos.s"));
-			BenutzerVerwaltungAdmin.userList = (ArrayList<Benutzer>) is.readObject();
-			is.close();
+        ObjectInputStream is;
+	    if(local) {
+	        System.out.println("readUserList local");
+            is = new ObjectInputStream(new FileInputStream("fos_local.s"));
+        }else {
+            System.out.println("readUserList remote");
+            is = new ObjectInputStream(new FileInputStream("fos_remote.s"));
+        }
+	    BenutzerVerwaltungAdmin.userList = (ArrayList<Benutzer>) is.readObject();
+	    is.close();
 	}
 
 	private void writeUserList() throws FileNotFoundException, IOException {
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("fos.s"));
-			os.writeObject(userList);
-		 	os.close();
+	    ObjectOutputStream os;
+	    if(local) {
+            System.out.println("writeUserList local");
+            os = new ObjectOutputStream(new FileOutputStream("fos_local.s"));
+        }else {
+            System.out.println("writeUserList remote");
+            os = new ObjectOutputStream(new FileOutputStream("fos_remote.s"));
+        }
+	    os.writeObject(userList);
+		os.close();
 	}
 
 	@Override
 	public void benutzerEintragen(Benutzer b) throws NutzerVerwaltungException {
+	    System.out.println("in benutzerEintragen");
 		if(b == null || !(b instanceof Benutzer))
 			throw new NutzerVerwaltungException("Object nicht gueltig!\n");
 
@@ -137,39 +169,6 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void printNewList() {
-		try {
-			ObjectInputStream is = new ObjectInputStream(new FileInputStream("fos.s"));
-			@SuppressWarnings("unchecked")
-			ArrayList<Benutzer> newList = (ArrayList<Benutzer>) is.readObject();
-			is.close();
-
-			System.out.println(newList);
-
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void main(String[] args) {
-		/*BenutzerVerwaltungAdmin a1 = new BenutzerVerwaltungAdmin();
-		//a1.dbInitialisieren();
-		try {
-			Benutzer b = new Benutzer("0", "hel123lo".toCharArray());
-			//a1.benutzerEintragen(b);
-			//a1.benutzerEintragen(new Benutzer("0", "hello".toCharArray()));
-			//a1.benutzerEintragen(new Benutzer("1", "hello1".toCharArray()));
-			//a1.benutzerLöschen(new Benutzer("0", "hel123lo".toCharArray()));
-			//a1.benutzerLöschen(new Benutzer("3", "hello".toCharArray()));
-			//System.out.println(a1.benutzerOk(new Benutzer("0", "hello".toCharArray())));
-			//a1.benutzerLöschen(new Benutzer("0", "hello3".toCharArray()));
-			//System.out.println(a1.userList);
-			//a1.printNewList();
-		}catch(NutzerVerwaltungException e) {
-			e.printStackTrace();
-		}*/
 	}
 
 }
