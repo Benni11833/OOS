@@ -18,8 +18,8 @@
       <Label layoutX="41.0" layoutY="139.0" text="Passwort" />
       <TextField fx:id="userIdTextField" layoutX="138.0" layoutY="92.0" />
       <PasswordField fx:id="passwordTextField" layoutX="138.0" layoutY="134.0" />
-      <Button layoutX="41.0" layoutY="218.0" mnemonicParsing="false" onAction="#validatePassword" text="Ausführen" />
       <Label layoutX="41.0" layoutY="184.0" text="Wiederholung" />
       <PasswordField fx:id="passwordTextField_wiederholung" layoutX="138.0" layoutY="179.0" />
+      <Button layoutX="41.0" layoutY="218.0" mnemonicParsing="false" onAction="#validatePassword" text="Ausführen" />
    </children>
 </AnchorPane>
