@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import prak4gemklassen.Benutzer;
 
 public class LoginController {
 
@@ -31,7 +31,7 @@ public class LoginController {
     }
 
     public void ausfuehrenButton(ActionEvent e){
-        System.out.println("In Ausfuehren");
+
         Benutzer user = new Benutzer(userIdTextField.getText(), passwordTextField.getText().toCharArray());
 
         if(neuAnmeldung){

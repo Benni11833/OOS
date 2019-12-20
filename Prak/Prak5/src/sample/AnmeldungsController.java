@@ -3,10 +3,9 @@ package sample;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import prak4gemklassen.Benutzer;
 
 public class AnmeldungsController {
     public void initialize(MainApplication mainApplication) {

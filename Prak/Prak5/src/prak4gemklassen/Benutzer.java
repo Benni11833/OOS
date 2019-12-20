@@ -1,4 +1,4 @@
-package sample;
+package prak4gemklassen;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class Benutzer implements Serializable {
 		passWort = null;
 	}
 
-	Benutzer(String userId, char [] passWort){
+	public Benutzer(String userId, char[] passWort){
 		this.userId = userId;
 		this.passWort = passWort;
 	}
@@ -34,8 +34,12 @@ public class Benutzer implements Serializable {
 		return ("Benutzer(" + userId + ", " + String.valueOf(passWort) +  ")");
 	}
 
+	public String getUserId(){
+		return this.userId;
+	}
+
 	/**
-	 * @param Object o: Benutzer zum vergleichen
+	 * @param o: Benutzer zum vergleichen
 	 * @return true, falls Beide Benutzer gleiche Id und passwort, sonst false
 	 * @return false, falls nicht true
 	 */

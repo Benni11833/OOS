@@ -1,4 +1,4 @@
-package sample;
+package prak4gemklassen;
 
 public class NutzerVerwaltungException extends Exception {
 
@@ -7,7 +7,7 @@ public class NutzerVerwaltungException extends Exception {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	NutzerVerwaltungException(String msg){
+	public NutzerVerwaltungException(String msg){
 		super(msg);
 	}
 

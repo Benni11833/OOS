@@ -1,5 +1,8 @@
 package sample;
 
+import prak4gemklassen.Benutzer;
+import prak4gemklassen.NutzerVerwaltungException;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -28,7 +31,7 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	}
 
 	@Override
-	public void benutzerEintragen(Benutzer b) throws NutzerVerwaltungException{
+	public void benutzerEintragen(Benutzer b) throws NutzerVerwaltungException {
 		if(b == null || !(b instanceof Benutzer))
 			throw new NutzerVerwaltungException("Object nicht gueltig!\n");
 
@@ -37,7 +40,7 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 			BenutzerVerwaltungAdmin.readUserList();
 
 			for(Benutzer b2 : userList) {
-				if(b2.userId.contentEquals(b.userId))
+				if(b2.getUserId().contentEquals(b.getUserId()))
 					throw new NutzerVerwaltungException("Benutzer: " + b + " ist bereits eingetragen!\n");
 			}
 
