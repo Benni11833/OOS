@@ -1,26 +1,31 @@
-package prak_2;
+package prak4gemklassen;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import prak4client.ClientOrb;
+import prak4serv.Server;
+import sample.BenutzerVerwaltungAdmin;
 
-class BenutzerVerwaltungAdminTest {
-	
+class LokaleTests {
+
 	BenutzerVerwaltungAdmin bva1, bva2;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		bva1 = new BenutzerVerwaltungAdmin();
+	    //lokal
+		bva1 = new BenutzerVerwaltungAdmin(false);
 		bva1.dbInitialisieren();
 	}
 
 	@Test
 	void benutzerOkEintragenTest() {
+	    //local
 		Benutzer b1 = new Benutzer("b1", "p1".toCharArray());
 		assertFalse(bva1.benutzerOk(b1));
-		
+
 		try {
 			bva1.benutzerEintragen(b1);
 		} catch (NutzerVerwaltungException e) {
@@ -34,7 +39,7 @@ class BenutzerVerwaltungAdminTest {
 		} catch (NutzerVerwaltungException e) {
 			;
 		}
-		
+
 		try {
 			bva1.benutzerEintragen(null);
 			fail("BenutzerEIntragen sollte Exception werfen bei null");
@@ -42,30 +47,30 @@ class BenutzerVerwaltungAdminTest {
 			;
 		}
 	}
-	
+
 	@Test
 	void benutzerLöschenTest() {
 		Benutzer b1 = new Benutzer("b2", "pw1".toCharArray());
-		
+
 		try {
 			bva1.benutzerEintragen(b1);
 		} catch (NutzerVerwaltungException e) {
 			fail("BenutzerLöschenTest: b1 sollte eingetragen werden");
 		}
 		assertTrue(bva1.benutzerOk(b1));
-		
+
 		try {
 			bva1.benutzerLöschen(b1);
 		} catch(NutzerVerwaltungException e) {
 			fail("BenutzerLöschenTest: b1 sollte gelöscht werden");
 		}
 		assertFalse(bva1.benutzerOk(b1));
-		
+
 		try {
 			bva1.benutzerLöschen(null);
 			fail("BenutzerLöschenTEst: null sollte Exception auslösen");
 		} catch (NutzerVerwaltungException e) {
-			
+
 		}
 	}
 

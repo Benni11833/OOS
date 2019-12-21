@@ -45,7 +45,7 @@ public class ServerOrb {
                         bv.benutzerEintragen((Benutzer) is.readObject());
                         this.os.writeObject("Benutzer eingetragen!");
                     } catch(NutzerVerwaltungException e){
-                        e.printStackTrace();
+                        this.os.writeObject(e);
                     } catch (IOException | ClassNotFoundException e) {
                         this.os.writeObject(e);
                     }
@@ -56,14 +56,14 @@ public class ServerOrb {
                         bv.benutzerLöschen((Benutzer) is.readObject());
                         this.os.writeObject("Benutzer gelöscht!");
                     } catch(NutzerVerwaltungException e){
-                        e.printStackTrace();
+                        this.os.writeObject(e);
                     } catch (IOException | ClassNotFoundException e) {
                         this.os.writeObject(e);
                     }
                     os.flush();
                     break;
                 case 3:
-                    try{
+                    try {
                         Object ret = bv.benutzerOk((Benutzer) is.readObject());
                         this.os.writeObject(ret);
                     } catch (IOException | ClassNotFoundException e) {

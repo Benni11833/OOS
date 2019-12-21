@@ -97,10 +97,6 @@ public class MainApplication extends Application {
             }
         } catch (NutzerVerwaltungException e) {
             loginController.getTextField().setText("Fehler bein einloggen des Benutzers: " + user);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 

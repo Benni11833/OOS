@@ -1,15 +1,13 @@
-package prak_2;
+package prak4gemklassen;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 class BenutzerTest {
-	
+
 	Benutzer b1, b2;
 
 	@BeforeEach
@@ -21,7 +19,7 @@ class BenutzerTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
+
 	@Test
 	void generalBenutzer(){
 		assertEquals(b1.userId, "1337");
@@ -33,7 +31,7 @@ class BenutzerTest {
 		assertEquals("Benutzer(1337, passwort123)", b1.toString());
 		assertEquals("Benutzer(, )", b2.toString());
 	}
-	
+
 	@Test
 	void testBenutzerEquals() {
 		assertFalse(b1.equals(b2));

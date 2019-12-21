@@ -2,6 +2,7 @@ package prak4client;
 
 import prak4gemklassen.Benutzer;
 import prak4gemklassen.NutzerVerwaltungException;
+import prak4serv.Server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,6 +18,7 @@ public class ClientOrb {
     public ClientOrb(){
         try{
             socket = new Socket("localhost", 1337);
+            System.out.println("Nach new Socket in ClientOrb");
             os = new ObjectOutputStream(socket.getOutputStream());
             is = new ObjectInputStream(socket.getInputStream());
         } catch (UnknownHostException e) {
@@ -62,20 +64,26 @@ public class ClientOrb {
         System.out.println("benutzerLöschen fertig");
     }
 
-    public boolean benutzerOk(Benutzer ben) throws NutzerVerwaltungException, IOException, ClassNotFoundException {
+    public boolean benutzerOk(Benutzer ben) throws NutzerVerwaltungException {
         System.out.println("in BenutzerOk - clientOrb");
         Object ergebnis;
 
+        try {
             os.writeInt(3);
             os.writeObject(ben);
             os.flush();
             ergebnis = is.readObject();
             try{
-               Boolean b = (Boolean) ergebnis;
+                Boolean b = (Boolean) ergebnis;
 
-               return b;
+                return b;
             }catch(ClassCastException e){
+                System.out.println("Gethrowed");
                 throw (NutzerVerwaltungException) ergebnis;
             }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
